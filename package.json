@@ -1,0 +1,26 @@
+{
+  "name": "my-sender",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youngboo/my-sender.git"
+  },
+  "keywords": [
+    "my-sender"
+  ],
+  "author": "youngboo",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/youngboo/my-sender/issues"
+  },
+  "homepage": "https://github.com/youngboo/my-sender#readme"
+}

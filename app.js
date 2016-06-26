@@ -12,7 +12,7 @@ var mongoose = require('mongoose');
 app.set('views','./views/pages');
 app.set('view engine','jade');
 //app.use(bodyParser);
-app.use(express.static(path.join(__dirname,'bower_components')));
+app.use(express.static(path.join(__dirname,'public')));
 app.listen(port);
 mongoose.connect('mongodb://127.0.0.1/test');
 console.log('servers tarted:'+port);

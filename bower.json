@@ -1,0 +1,24 @@
+{
+  "name": "yang",
+  "homepage": "https://github.com/youngboo/my-sender",
+  "authors": [
+    "youngboo <504142201@qq.com>"
+  ],
+  "description": "my-sender",
+  "main": "",
+  "keywords": [
+    "my-sender"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
