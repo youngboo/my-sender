@@ -11,9 +11,23 @@ var mongoose = require('mongoose');
 
 app.set('views','./views/pages');
 app.set('view engine','jade');
-//app.use(bodyParser);
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname,'public')));
+
+var busboy = require('connect-busboy');
+
+// default options, no immediate parsing
+app.use(busboy());
+
+//app.use(express.multipart());
 app.listen(port);
+
+//数据库连接
 mongoose.connect('mongodb://127.0.0.1/test');
 console.log('servers tarted:'+port);
 var movies = [{
@@ -46,13 +60,63 @@ app.get('/list',(req,res)=>{
         movies:movies
     })
 });
-app.get('/add',(req,res)=>{
-    res.render('add',{
-        title:"my-sender add"
+app.get('/upload',(req,res)=>{
+    res.render('upload',{
+        title:"my-sender upload"
     })
 });
 app.get('/detail:id',(req,res)=>{
     res.render('detail',{
         title:"my-sender detail"
     })
+});
+/*app.post('/upload/file',(req,res,next)=>{
+
+    var posterData = req.files.uploadPoster;
+    var filePath = posterData.path;
+    var originalFilename = posterData.originalFilename;
+
+    if (originalFilename) {
+        fs.readFile(filePath, function(err, data) {
+            var timestamp = Date.now();
+            var type = posterData.type.split('/')[1];
+            var poster = timestamp + '.' + type;
+            var newPath = path.join(__dirname, '../../', '/public/upload/' + poster);
+
+            fs.writeFile(newPath, data, function(err) {
+                req.poster = poster;
+                next();
+            })
+        })
+    }
+    else {
+        next();
+    }
+});*/
+app.post('/upload/file',(req,res,next)=>{
+    //console.log(req);
+    req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+        console.log(filedname);
+        console.log(file);
+    });
+/*    var posterData = req.files.uploadPoster;
+    var filePath = posterData.path;
+    var originalFilename = posterData.originalFilename;
+
+    if (originalFilename) {
+        fs.readFile(filePath, function(err, data) {
+            var timestamp = Date.now();
+            var type = posterData.type.split('/')[1];
+            var poster = timestamp + '.' + type;
+            var newPath = path.join(__dirname, '../../', '/public/upload/' + poster);
+
+            fs.writeFile(newPath, data, function(err) {
+                req.poster = poster;
+                next();
+            })
+        })
+    }
+    else {
+        next();
+    }*/
 });

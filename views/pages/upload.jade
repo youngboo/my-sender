@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+    .container
+        .row
+            form.form-horizontal(method="post", action="/upload/file", enctype="multipart/form-data")
+
+                .form-group
+                    label.col-sm-2.control-label(for="uploadfile") 海报上传
+                    .col-sm-10
+                        input#uploadfile(type="file", name="uploadfile")
+                .form-group
+                    .col-sm-offset-2.col-sm-10
+                    button.btn.btn-default(type="submit") 录入
